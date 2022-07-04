@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
-const restaurantRouter = require("./restaurant");
+const controller = require("../controllers/restaurant");
 
-router.use("/restaurants", restaurantRouter);
+router.get("/open", controller.open);
 
 module.exports = router;
