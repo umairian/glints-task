@@ -9,12 +9,16 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             autoIncrement: true,
         },
-        dish_name: {
+        day_name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        price: {
-            type: DataTypes.DOUBLE,
+        opening: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
+        closing: {
+            type: DataTypes.INTEGER,
             allowNull: false,
         },
         fk_restaurant_id: {
