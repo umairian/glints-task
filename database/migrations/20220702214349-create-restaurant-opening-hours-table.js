@@ -18,11 +18,11 @@ module.exports = {
         allowNull: false,
       },
       opening: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       closing: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       fk_restaurant_id: {

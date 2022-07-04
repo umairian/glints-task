@@ -2,6 +2,7 @@
 
 const moment = require("moment");
 const restaurantsData = require("../../data/restaurants");
+const { TIME_FORMAT } = require("../../constants");
 
 module.exports = {
   up: async (queryInterface) => {
@@ -24,13 +25,17 @@ module.exports = {
         if(result.length === 1 && dashResult.length === 2) {
           // result[0].replace(/\s/g, "");
           const [day] = result[0].trim().split(" ");
-          const [opening, closing] = result[0].replace(day, "").replace(/\s/g, "").split("-");
+          let [opening, closing] = result[0].replace(day, "").replace(/\s/g, "").split("-");
+          opening = moment(opening, TIME_FORMAT).diff(moment().startOf('day'), 'seconds');
+          closing = moment(closing, TIME_FORMAT).diff(moment().startOf('day'), 'seconds');
           await queryInterface.sequelize.query(`INSERT INTO restaurant_opening_hours (day_name, opening, closing, fk_restaurant_id, createdAt, updatedAt) VALUES ("${day}", "${opening}", "${closing}", "${index + 1}", "${moment().unix()}", "${moment().unix()}")`, { logging: console.log });
         } else if (result.length === 2 && dashResult.length === 2) {
           let [dayFirst, daySecond] = result;
           dayFirst = dayFirst.trim();
           [daySecond] = daySecond.trim().split(" ");
-          const [opening, closing] = result[1].replace(daySecond, "").replace(/\s/g, "").split("-");
+          let [opening, closing] = result[1].replace(daySecond, "").replace(/\s/g, "").split("-");
+          opening = moment(opening, TIME_FORMAT).diff(moment().startOf('day'), 'seconds');
+          closing = moment(closing, TIME_FORMAT).diff(moment().startOf('day'), 'seconds');
           await queryInterface.sequelize.query(`INSERT INTO restaurant_opening_hours (day_name, opening, closing, fk_restaurant_id, createdAt, updatedAt) VALUES ("${dayFirst}", "${opening}", "${closing}", "${index + 1}", "${moment().unix()}", "${moment().unix()}")`, { logging: console.log });
           await queryInterface.sequelize.query(`INSERT INTO restaurant_opening_hours (day_name, opening, closing, fk_restaurant_id, createdAt, updatedAt) VALUES ("${daySecond}", "${opening}", "${closing}", "${index + 1}", "${moment().unix()}", "${moment().unix()}")`, { logging: console.log });
         }
@@ -39,8 +44,10 @@ module.exports = {
           firstDay = firstDay.trim();
           secondDay = secondDay.trim();
           [secondDay] = secondDay.trim().split(" ");
-          const opening = dashResult[1].replace(secondDay, "").replace(/\s/g, "");
-          const closing = dashResult[2].trim().replace(/\s/g, "");
+          let opening = dashResult[1].replace(secondDay, "").replace(/\s/g, "");
+          let closing = dashResult[2].trim().replace(/\s/g, "");
+          opening = moment(opening, TIME_FORMAT).diff(moment().startOf('day'), 'seconds');
+          closing = moment(closing, TIME_FORMAT).diff(moment().startOf('day'), 'seconds');
           await queryInterface.sequelize.query(`INSERT INTO restaurant_opening_hours (day_name, opening, closing, fk_restaurant_id, createdAt, updatedAt) VALUES ("${firstDay}", "${opening}", "${closing}", "${index + 1}", "${moment().unix()}", "${moment().unix()}")`, { logging: console.log });
           await queryInterface.sequelize.query(`INSERT INTO restaurant_opening_hours (day_name, opening, closing, fk_restaurant_id, createdAt, updatedAt) VALUES ("${secondDay}", "${opening}", "${closing}", "${index + 1}", "${moment().unix()}", "${moment().unix()}")`, { logging: console.log });
         }
