@@ -5,8 +5,8 @@ const {
   sequelize,
 } = require("../models");
 const moment = require("moment");
-const { Op, fn, col } = require("sequelize");
-const { isNil, map, isUndefined } = require("lodash");
+const { Op } = require("sequelize");
+const { isNil, isUndefined } = require("lodash");
 
 module.exports = {
   open: async (req, res) => {
