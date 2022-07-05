@@ -38,16 +38,16 @@ module.exports = (sequelize, DataTypes) => {
 
   Restaurant.associate = (models) => {
     Restaurant.hasMany(models.RestaurantMenus, {
-        as: "menus",
-        foreignKey: "fk_restaurant_id",
-        targetKey: "id",
+      as: "menus",
+      foreignKey: "fk_restaurant_id",
+      targetKey: "id",
     });
     Restaurant.hasMany(models.RestaurantOpeningHours, {
-        as: "openingHours",
-        foreignKey: "fk_restaurant_id",
-        targetKey: "id",
+      as: "openingHours",
+      foreignKey: "fk_restaurant_id",
+      targetKey: "id",
     });
-};
+  };
 
   return Restaurant;
 };

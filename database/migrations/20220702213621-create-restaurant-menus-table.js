@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 const { DataTypes } = require("sequelize");
 
@@ -38,5 +38,5 @@ module.exports = {
 
   down: (queryInterface) => {
     return queryInterface.dropTable(table);
-  }
+  },
 };
