@@ -1,15 +1,17 @@
-# Basic-App-Structure
+# Glints Backend Task
 
 A template of Node.js Web Server.
 
 ## Pre requisites
 
-- Node 14.0
+- Node 16.0
 
-## Install dependencies
+## Steps for Running the app for first time
+To run the application locally, environment variables must be modified in `environments/development.json`.
 
 ```
 npm install or npm i
+npm run db:migrate
 ```
 
 ## Start Server
@@ -30,11 +32,6 @@ Or
 npm run server (hot reloading)
 ```
 
-## Tail Logs
-
-```
-npm run logs
-```
 
 ## Stop app
 
@@ -51,7 +48,7 @@ npm run stop
 
 ## Config
 
-- For development, define required variables in development.json
+- For development, define required variables in environments/development.json
 - For production, define required variables as environment variable in remote setup.
 
 ## Create Migration
@@ -71,6 +68,24 @@ npm run db:migrate
 ```
 npm run db:migrate:undo
 ```
+
+## API Interface
+
+### Get All Open Restaurants
+To get all the current open restaurant, hit `GET: api/restaurants/open`
+
+### Get top Restaurants for a price range
+To get top y Restaurants having dishes in a price range, hit `GET: api/restaurants/top?count=3&maxNumOfDishes=4&priceFrom=5&priceTo=40` where
+`count: Number of Restaurants`
+`maxNumOfDishes: Max number of dishes in a single restaurant`
+`priceFrom: lower limit of price range`
+`priceTo: higher limit of the price range`
+
+### Search Restaurants or Dishes
+To search restaurants or dishes, hit `GET: api/restaurants/search?searchTerm=Olive`
+
+### Route of User for ordering dish from a restaurant
+To order a dish from a restaurant on behalf of a user, hit `POST: api/users/:userId/restaurants/:restaurantId/dishes/:dishId`
 
 ## Contributing
 
