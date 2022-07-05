@@ -76,10 +76,10 @@ To get all the current open restaurant, hit `GET: api/restaurants/open`
 
 ### Get top Restaurants for a price range
 To get top y Restaurants having dishes in a price range, hit `GET: api/restaurants/top?count=3&maxNumOfDishes=4&priceFrom=5&priceTo=40` where
-`count: Number of Restaurants`
-`maxNumOfDishes: Max number of dishes in a single restaurant`
-`priceFrom: lower limit of price range`
-`priceTo: higher limit of the price range`
+`count: Number of Restaurants`<br />
+`maxNumOfDishes: Max number of dishes in a single restaurant`<br />
+`priceFrom: lower limit of price range`<br />
+`priceTo: higher limit of the price range`<br />
 
 ### Search Restaurants or Dishes
 To search restaurants or dishes, hit `GET: api/restaurants/search?searchTerm=Olive`
