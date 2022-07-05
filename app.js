@@ -34,7 +34,7 @@ app.use(cors()); // will configure later
 app.use("/api", router);
 
 // catch 404 later
-// app.use((req, res, next) => next("Not Found"));
+app.use((req, res) => res.status(404).send("Route not found"));
 
 // error handling
 app.use((err, req, res, next) => {
