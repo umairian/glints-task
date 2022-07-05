@@ -2,7 +2,7 @@
 const moment = require("moment");
 
 module.exports = (sequelize, DataTypes) => {
-    const UserPurchaseHistory = sequelize.define("user_purchase_history", {
+    const UserPurchaseHistory = sequelize.define("user_purchase_histories", {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,

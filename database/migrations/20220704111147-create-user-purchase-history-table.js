@@ -2,7 +2,7 @@
 
 const { DataTypes } = require("sequelize");
 
-const table = "user_purchase_history";
+const table = "user_purchase_histories";
 
 module.exports = {
   up: (queryInterface) => {
